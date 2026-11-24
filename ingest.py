@@ -10,7 +10,7 @@ from pgvector.psycopg import register_vector
 from pypdf import PdfReader
 from sentence_transformers import SentenceTransformer
 
-load_dotenv()
+load_dotenv(override=True)
 
 DATA_DIR = Path("data")
 MODEL_NAME = "BAAI/bge-small-en-v1.5"  # 384-dim embeddings, matches vector(384)
