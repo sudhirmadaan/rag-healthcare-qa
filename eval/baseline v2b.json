@@ -1,0 +1,798 @@
+[
+  {
+    "id": 1,
+    "question": "What is a Health Information Provider (HIP) in ABDM?",
+    "answerable": true,
+    "answer": "In ABDM, a Health Information Provider (HIP) is any entity that creates health information pertaining to a user and agrees to share these digital health records with their users using ABDM APIs [1][3]. HIPs can include hospitals, labs, health care centers, government health programs, teleconsultation players, clinics, or pharmacies\u2014essentially any entity that creates medical data pertaining to a patient and is ready to share it digitally by adopting compliant software [1][3].",
+    "gold_chunk_count": 1,
+    "gold_per_phrase": {
+      "creates health information": 1
+    },
+    "gold_rank": 3,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim about an HIP in the answer is directly supported by the provided text in passages [1] and [3].",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.108,
+    "cost_usd": 0.000265,
+    "sources": [
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.1675
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.2007
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.2245
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.2458
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.2848
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 8,
+        "distance": 0.2886
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3147
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.326
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What is a Health Information User (HIU), and what does it need before it can see someone's records?",
+    "answerable": true,
+    "answer": "A Health Information User (HIU) is any entity that intends to view or wants access to digital health information linked to an ABHA address (such as a hospital, clinic, PHR app, healthcare technology company, health analytics organization, insurer, medical researcher, or government entity) [1][2]. \n\nBefore an HIU can see someone's records, it needs to collect a consent from the user (by initiating a consent request with the HIE-CM) [1][5].",
+    "gold_chunk_count": 1,
+    "gold_per_phrase": {
+      "intends to view health records": 1
+    },
+    "gold_rank": 2,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim in the answer is directly supported by the provided passages.",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 0.93,
+    "cost_usd": 0.000258,
+    "sources": [
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.2009
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.2101
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.2406
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.2643
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.2701
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.2744
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 8,
+        "distance": 0.2772
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.2828
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What do \"Mandatory\" and \"Must Support\" mean when reading a FHIR profile in the ABDM guide?",
+    "answerable": true,
+    "answer": "Based on the provided documents, when reading a FHIR profile in the ABDM guide:\n\n* **Mandatory Element:** Elements with cardinality '1..1' or '1..*'' are mandatory, meaning they must always be present in the resource [3][7]. They are critical for the proper functioning of data exchange and cannot be omitted [3].\n* **Must Support:** These elements are optional for the sender (such as the Healthcare Information Provider, or HIP, who may choose whether or not to include them) [3][6]. However, they must be supported by receiving systems [3]. Specifically, the receiver or Healthcare Information User (HIU) must have the capacity to read and process these elements if they are present [3][6].",
+    "gold_chunk_count": 3,
+    "gold_per_phrase": {
+      "Must Support": 3
+    },
+    "gold_rank": 2,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim in the answer is directly supported by the provided text passages.",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.197,
+    "cost_usd": 0.000281,
+    "sources": [
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 11,
+        "distance": 0.2659
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 2,
+        "distance": 0.2689
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 11,
+        "distance": 0.2801
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 1,
+        "distance": 0.2876
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 12,
+        "distance": 0.3032
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.3059
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 19,
+        "distance": 0.307
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 10,
+        "distance": 0.3073
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Which FHIR resource are clinical artefacts such as OPConsultRecord and PrescriptionRecord based on?",
+    "answerable": true,
+    "answer": "Clinical artefacts such as `OPConsultRecord` and `PrescriptionRecord` are based on the `Composition` resource [1][2].",
+    "gold_chunk_count": 9,
+    "gold_per_phrase": {
+      "Composition resource": 9,
+      "based on Composition": 6
+    },
+    "gold_rank": 1,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim made in the answer is directly supported by the provided passages.",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 9 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 0.957,
+    "cost_usd": 0.000199,
+    "sources": [
+      {
+        "source": "Profiles - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.2282
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 3,
+        "distance": 0.2378
+      },
+      {
+        "source": "Profiles - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.2801
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 3,
+        "distance": 0.2808
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 4,
+        "distance": 0.2885
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 5,
+        "distance": 0.2917
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 9,
+        "distance": 0.2942
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 6,
+        "distance": 0.2986
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Which version of FHIR is the ABDM implementation guide based on?",
+    "answerable": true,
+    "answer": "The ABDM FHIR Implementation Guide is based on FHIR Version R4 (4.0.1) [1][2][5].",
+    "gold_chunk_count": 8,
+    "gold_per_phrase": {
+      "FHIR Version R4": 2,
+      "R4.0.1": 6
+    },
+    "gold_rank": 1,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim in the answer is directly supported by the provided passages.",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 8 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.011,
+    "cost_usd": 0.000191,
+    "sources": [
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 11,
+        "distance": 0.1913
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 1,
+        "distance": 0.217
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 1,
+        "distance": 0.2357
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 4,
+        "distance": 0.2358
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 1,
+        "distance": 0.251
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 10,
+        "distance": 0.2522
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 4,
+        "distance": 0.2595
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 23,
+        "distance": 0.2665
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Which Java library does the NRCeS guide mention for implementing and validating FHIR?",
+    "answerable": true,
+    "answer": "The guide mentions the HAPI FHIR library for implementing and validating FHIR in Java [1].",
+    "gold_chunk_count": 11,
+    "gold_per_phrase": {
+      "HAPI FHIR": 11
+    },
+    "gold_rank": 1,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nThe text explicitly states that the document is a guide for creating and validating FHIR resources in Java using the HAPI FHIR library [1].",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 11 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 0.823,
+    "cost_usd": 0.00018,
+    "sources": [
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 14,
+        "distance": 0.1943
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 23,
+        "distance": 0.2286
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 14,
+        "distance": 0.2355
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 22,
+        "distance": 0.24
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 21,
+        "distance": 0.2494
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 1,
+        "distance": 0.2533
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 15,
+        "distance": 0.2537
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 19,
+        "distance": 0.2636
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "How do you create a consent request in the ABDM sandbox?",
+    "answerable": true,
+    "answer": "To create a consent request in the ABDM sandbox:\n\n1. An HIU initiates a consent request by sending the user's ABHA address along with the consent details (such as the purpose of use, type of records, time period, and how long the records will be retained) to the HIE-CM via the gateway [1][2][7][8]. This is done by making a POST request to `/consent-requests/init` using the base URL `https://dev.abdm.gov.in/gateway` [1].\n2. The HIE-CM acknowledges the request, sends back a consent request ID to the HIU via the gateway, and notifies the patient so they can view, grant, or deny the request [1][2][8]. \n3. The HIU receives the response on the `on-init` API (via the callback URL or `POST /consent-requests/on-init`), and can also check the status of the request (which can be REQUESTED, GRANTED, DENIED, or EXPIRED) by using the `POST /consent-requests/status` API [1].",
+    "gold_chunk_count": 9,
+    "gold_per_phrase": {
+      "consent request": 9
+    },
+    "gold_rank": 1,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim in the provided answer is directly supported by the text and sequence details in the cited passages.",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 9 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.507,
+    "cost_usd": 0.00032,
+    "sources": [
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.3005
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.3218
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 4,
+        "distance": 0.3255
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 9,
+        "distance": 0.329
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 3,
+        "distance": 0.331
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3316
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 8,
+        "distance": 0.335
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.3399
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What can a patient do with a consent request in the sandbox?",
+    "answerable": true,
+    "answer": "Based on the provided documents, when a patient receives a consent request, they can do the following:\n\n* View the details of the consent request [1][2].\n* Choose to either grant (approve) or deny the request [1][2].\n* Decide what they actually want to share when granting consent [2].\n* Revoke the consent at any time after it has been granted [2].",
+    "gold_chunk_count": 5,
+    "gold_per_phrase": {
+      "Revoke": 5
+    },
+    "gold_rank": 2,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim made in the answer is directly supported by the provided passages.",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 5 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.08,
+    "cost_usd": 0.000243,
+    "sources": [
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.298
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.3344
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 9,
+        "distance": 0.3387
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.3413
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.3624
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3814
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.3825
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 3,
+        "distance": 0.3892
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "How does the PHR framework support patients who don't have a phone?",
+    "answerable": true,
+    "answer": "For patients without phones or who use feature phones, the PHR framework supports them through the following methods:\n\n* **ABHA Number and Printed ABHA Card:** They can be issued an ABHA number and a printed ABHA card, which features a QR code that can be rapidly scanned by a health facility using a 2D barcode scanner to retrieve their demographic information and ABHA address [1].\n* **ABHA Numbers via Assisted Mode:** ABHA numbers are issued extensively in assisted mode by all Government health programs to help those without phones manage their personal health records [8].",
+    "gold_chunk_count": 4,
+    "gold_per_phrase": {
+      "without phones": 4
+    },
+    "gold_rank": 1,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "SUPPORTED",
+    "judge_reason": "SUPPORTED\nEvery claim in the answer is directly supported by the provided passages.",
+    "missing_details": [],
+    "warnings": [
+      "gold phrases match 4 chunks: too loose, tighten"
+    ],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 2,
+    "generate_s": 2.316,
+    "cost_usd": 0.000261,
+    "sources": [
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.2964
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.3013
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3192
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3205
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 6,
+        "distance": 0.3286
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 6,
+        "distance": 0.3338
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.369
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 4,
+        "distance": 0.3723
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What is the Health Information Exchange and Consent Manager (HIE-CM) for?",
+    "answerable": true,
+    "answer": "The Health Information Exchange & Consent Manager (HIE-CM) is a key ABDM building block that is responsible for:\n\n* Managing ABHA addresses [6].\n* Maintaining links to health data for each ABHA address [6].\n* Managing consents provided by the user for sharing their health data [6], and storing all consents provided by the user [3][8].\n* Supporting the exchange of interoperable health data between Health Information Providers (HIPs) and Health Information Users (HIUs) [6].\n* Receiving consent requests (including the purpose, type of records, time period, and retention duration) and forwarding them to the user via their PHR app [1].\n* Sharing a signed consent artifact with the requesting HIU if the user grants consent [1], or sending across the IDs of the consent artifacts created against the request [2].\n* Forwarding data requests to all Health Repository Providers (HRPs) holding the linked data [1].\n* Notifying the patient of a consent request and notifying the HIU requester of the patient's consent, denial, or revocation status via the gateway [1][2].",
+    "gold_chunk_count": 2,
+    "gold_per_phrase": {
+      "Health Information Exchange": 2
+    },
+    "gold_rank": 6,
+    "retrieval_hit": true,
+    "cited_gold": true,
+    "refused": false,
+    "judge": "PARTIAL",
+    "judge_reason": "PARTIAL\nThe passages mention notifying the HIU requester of the patient's \"consent or denial status via the gateway,\" but do not mention notifying the requester of the patient's \"revocation status\" via the gateway.",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": false,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.355,
+    "cost_usd": 0.000336,
+    "sources": [
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.2397
+      },
+      {
+        "source": "Requesting Consent - ABDM Sandbox Documentation.pdf",
+        "page": 1,
+        "distance": 0.2618
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.2768
+      },
+      {
+        "source": "Home - FHIR Implementation Guide for ABDM v6.5.0.pdf",
+        "page": 2,
+        "distance": 0.2799
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 8,
+        "distance": 0.2899
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 4,
+        "distance": 0.3012
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.3052
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.3138
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "What is the capital of France?",
+    "answerable": false,
+    "answer": "I can't find that in the documents.",
+    "gold_chunk_count": 0,
+    "gold_per_phrase": {
+      "Paris": 0
+    },
+    "gold_rank": null,
+    "retrieval_hit": false,
+    "cited_gold": false,
+    "refused": true,
+    "judge": "N/A",
+    "judge_reason": "",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 0.918,
+    "cost_usd": 0.000184,
+    "sources": [
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 2,
+        "distance": 0.5869
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 7,
+        "distance": 0.59
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.5926
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 3,
+        "distance": 0.5927
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 6,
+        "distance": 0.5968
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 17,
+        "distance": 0.6028
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 4,
+        "distance": 0.6056
+      },
+      {
+        "source": "fhir-adoption-abdm-nhcx.pdf",
+        "page": 15,
+        "distance": 0.6058
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "What does ABDM sandbox access cost per month?",
+    "answerable": false,
+    "answer": "I can't find that in the documents.",
+    "gold_chunk_count": 0,
+    "gold_per_phrase": {
+      "monthly fee": 0,
+      "per month": 0,
+      "subscription": 0
+    },
+    "gold_rank": null,
+    "retrieval_hit": false,
+    "cited_gold": false,
+    "refused": true,
+    "judge": "N/A",
+    "judge_reason": "",
+    "missing_details": [],
+    "warnings": [],
+    "auto_pass": true,
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 1,
+    "generate_s": 1.001,
+    "cost_usd": 0.0002,
+    "sources": [
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 4,
+        "distance": 0.3743
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 6,
+        "distance": 0.3896
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 8,
+        "distance": 0.3946
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 3,
+        "distance": 0.403
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 6,
+        "distance": 0.4109
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 2,
+        "distance": 0.4113
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.4213
+      },
+      {
+        "source": "The PHR Framework - ABDM Sandbox Documentation.pdf",
+        "page": 5,
+        "distance": 0.4336
+      }
+    ]
+  }
+]

@@ -1,5 +1,6 @@
 import os
 import re
+import unicodedata
 import time
 from pathlib import Path
 
@@ -17,8 +18,23 @@ MODEL_NAME = "BAAI/bge-small-en-v1.5"  # 384-dim embeddings, matches vector(384)
 CHUNK_CHARS = 1200  # roughly 300 tokens
 OVERLAP = 200
 
+# Browser-print header/footer, e.g. "11/22/26, 6:02 PM <title> https://... 6/8"
+PRINT_HEADER = re.compile(
+    r"\d{1,2}/\d{1,2}/\d{2,4},\s*\d{1,2}:\d{2}\s*[AP]M\s+.{0,200}?https?://\S+\s+\d+/\d+"
+)
+# NRCeS PDF page footer
+NRCES_FOOTER = re.compile(
+    r"National Resource Centre for EHR Standards \(NRCeS\).{0,80}?Page \d+ of \d+"
+)
+
 
 def clean(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text)  # expands fi/fl ligatures
+    text = text.replace("\x00", " ")  # Postgres rejects NUL characters
+    text = re.sub(r"\s+", " ", text).strip()
+    text = PRINT_HEADER.sub(" ", text)
+    text = NRCES_FOOTER.sub(" ", text)
+    return re.sub(r"\s+", " ", text).strip()
     text = text.replace("\x00", " ")  # Postgres rejects NUL characters
     return re.sub(r"\s+", " ", text).strip()
 
@@ -33,6 +49,10 @@ def chunk_text(text: str, size: int = CHUNK_CHARS, overlap: int = OVERLAP) -> li
             space = text.rfind(" ", start + size // 2, end)
             if space != -1:
                 end = space
+        # If only a short tail would remain (no longer than the overlap),
+        # absorb it into this chunk instead of emitting a near-duplicate chunk.
+        if end < len(text) and len(text) - end <= overlap:
+            end = len(text)
         chunk = text[start:end].strip()
         if len(chunk) >= 50:  # skip tiny fragments
             chunks.append(chunk)
@@ -40,7 +60,6 @@ def chunk_text(text: str, size: int = CHUNK_CHARS, overlap: int = OVERLAP) -> li
             break
         start = max(end - overlap, start + 1)
     return chunks
-
 
 def main():
     pdfs = sorted(DATA_DIR.glob("*.pdf"))

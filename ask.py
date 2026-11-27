@@ -15,7 +15,7 @@ load_dotenv(override=True)
 
 EMBED_MODEL = "BAAI/bge-small-en-v1.5"
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
-TOP_K = 5
+TOP_K = 8
 
 # Primary model first, fallback second. Override in .env if needed.
 MODELS = [

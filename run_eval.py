@@ -23,16 +23,15 @@ JUDGE_SYSTEM = (
     "Use only the passages, never outside knowledge."
 )
 
-
 def find_gold_ids(conn, phrases):
-    ids = set()
+    ids, per_phrase = set(), {}
     for p in phrases:
         rows = conn.execute(
             "select id from documents where content ilike %s", (f"%{p}%",)
         ).fetchall()
+        per_phrase[p] = len(rows)
         ids.update(r[0] for r in rows)
-    return ids
-
+    return ids, per_phrase
 
 def cited_numbers(answer: str) -> list[int]:
     return [int(n) for n in re.findall(r"\[(\d+)\]", answer)]
@@ -72,7 +71,7 @@ def main():
             chunks = rec["chunks"]
             refused = REFUSAL in answer.lower().replace("\u2019", "'")
 
-            gold_ids = find_gold_ids(conn, q.get("gold_phrases", []))
+            gold_ids, per_phrase = find_gold_ids(conn, q.get("gold_phrases", []))
             retrieved_ids = [c["id"] for c in chunks]
             gold_ranks = [i + 1 for i, cid in enumerate(retrieved_ids) if cid in gold_ids]
             retrieval_hit = bool(gold_ranks)
@@ -93,6 +92,10 @@ def main():
                 warnings.append("no chunk matches gold_phrases: fix the phrase")
             if not q["answerable"] and gold_ids:
                 warnings.append("documents may contain the answer: check this question")
+            if q["answerable"] and len(gold_ids) > 3:
+                warnings.append(
+                    f"gold phrases match {len(gold_ids)} chunks: too loose, tighten"
+                )
             if q["answerable"] and not refused and not valid:
                 warnings.append("answer has no valid citation")
             if invalid:
@@ -112,8 +115,8 @@ def main():
                     "answerable": q["answerable"],
                     "answer": answer,
                     "gold_chunk_count": len(gold_ids),
-                    "gold_rank": min(gold_ranks) if gold_ranks else None,
-                    "retrieval_hit": retrieval_hit,
+                    "gold_per_phrase": per_phrase,
+                    "gold_rank": min(gold_ranks) if gold_ranks else None,   "retrieval_hit": retrieval_hit,
                     "cited_gold": cited_gold,
                     "refused": refused,
                     "judge": verdict,
@@ -141,6 +144,7 @@ def main():
             f"## Q{r['id']}: {r['question']}",
             f"- auto_pass: **{r['auto_pass']}**",
             f"- gold chunks in database: {r['gold_chunk_count']}; best gold rank in top 5: {r['gold_rank']}",
+            f"- gold chunks per phrase: {r['gold_per_phrase']}",
             f"- retrieval_hit={r['retrieval_hit']}  cited_gold={r['cited_gold']}  refused={r['refused']}",
             f"- judge: {r['judge']} {('- ' + r['judge_reason']) if r['judge_reason'] else ''}",
             f"- details in the answer not found in cited text: {r['missing_details']}",
