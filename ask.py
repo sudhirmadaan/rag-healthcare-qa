@@ -55,16 +55,45 @@ def get_embedder():
     return _embedder
 
 
-def retrieve(conn, question: str):
+def retrieve(conn, question: str, timings: dict | None = None):
+    t0 = time.time()
+    q = get_embedder().encode(QUERY_PREFIX + question, normalize_embeddings=True)
+    q = np.array(q)
+    t1 = time.time()
+    rows = conn.execute(
+        "select id, source, page, content, embedding <=> %s as distance "
+        "from documents order by embedding <=> %s limit %s",
+        (q, q, TOP_K),
+    ).fetchall()
+    t2 = time.time()
+    if timings is not None:
+        timings["embed_s"] = round(t1 - t0, 3)
+        timings["db_s"] = round(t2 - t1, 3)
+    return [
+        {
+            "id": r[0],
+            "source": r[1],
+            "page": r[2],
+            "content": r[3],
+            "distance": float(r[4]),
+        }
+        for r in rows
+    ]
     q = get_embedder().encode(QUERY_PREFIX + question, normalize_embeddings=True)
     q = np.array(q)
     rows = conn.execute(
-        "select source, page, content, embedding <=> %s as distance "
+        "select id, source, page, content, embedding <=> %s as distance "
         "from documents order by embedding <=> %s limit %s",
         (q, q, TOP_K),
     ).fetchall()
     return [
-        {"source": r[0], "page": r[1], "content": r[2], "distance": float(r[3])}
+        {
+            "id": r[0],
+            "source": r[1],
+            "page": r[2],
+            "content": r[3],
+            "distance": float(r[4]),
+        }
         for r in rows
     ]
 
@@ -111,7 +140,8 @@ def generate(messages):
 
 def ask(conn, question: str) -> dict:
     t0 = time.time()
-    chunks = retrieve(conn, question)
+    timings = {}
+    chunks = retrieve(conn, question, timings)
     t_retrieve = time.time() - t0
 
     t1 = time.time()
@@ -129,6 +159,8 @@ def ask(conn, question: str) -> dict:
         "model": result["model"],
         "attempts": result["attempts"],
         "retrieve_s": round(t_retrieve, 3),
+        "embed_s": timings["embed_s"],
+        "db_s": timings["db_s"],
         "generate_s": round(t_generate, 3),
         "tokens_in": result["tokens_in"],
         "tokens_out": result["tokens_out"],
@@ -141,7 +173,7 @@ def ask(conn, question: str) -> dict:
     LOG_PATH.parent.mkdir(exist_ok=True)
     with LOG_PATH.open("a", encoding="utf-8") as f:
         f.write(json.dumps(record) + "\n")
-    return record
+    return {**record, "chunks": chunks}
 
 
 def show(record: dict):

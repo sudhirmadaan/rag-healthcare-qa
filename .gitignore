@@ -225,3 +225,5 @@ __marimo__/
 .vscode/
 
 logs/
+
+eval/results-*
