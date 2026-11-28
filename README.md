@@ -31,7 +31,7 @@ question -> embed (query prefix) -> top-8 chunks by cosine distance
 | Generation | Gemini via OpenAI-compatible API, with fallback model | Provider swappable by config; fallback handles 429/503 |
 | Retrieval | top_k = 8 | See "What the evaluation found" |
 
-_TODO: add architecture diagram image here._
+_![Architecture](docs/architecture.svg)._
 
 ## Evaluation
 
